@@ -4,7 +4,7 @@
     {% include 'tools/header.html' %}
     <link href="{{ STATIC_URL }}css/dashboard.css" rel="stylesheet">
 </head>
-<body>
+<body background="{{ STATIC_URL }}img/background2.jpg">
 {% include 'tools/nav.html' %}
 <div class="container-fluid">
     <div class="row">
@@ -22,9 +22,9 @@
                 <li><a href="{% url 'hardware' %}">&nbsp;&nbsp;&nbsp;&nbsp;本机硬件检测</a></li>
             </ul>
         </div>
-        <div class="col-sm-8 col-md-offset-2 main" style="float: right">
+        <div class="col-sm-9 col-md-offset-2 main" style="float: right">
             <div class="row">
-                <div class="col-sm-8" style="margin: 0 auto">
+                <div class="col-sm-7" style="margin: 0 auto">
                     <h1>告诉我们你的疑惑</h1>
                     <br/>
                     <h4>我们将回答对你来说很重要的问题，所以不要害羞，给我们写信吧。我们将尽我们所能以最快的速度来回答问题。</h4>
@@ -46,7 +46,7 @@
                             <textarea name="message" id="message" class="form-control" rows="7"></textarea>
                         </div>
                         <div class="form-group">
-                            <button onclick="result()" type="submit" class="btn btn-primary">发送信息</button>
+                            <button onclick="result()" type="submit" class="btn btn-primary">&nbsp;&nbsp;发送信息&nbsp;&nbsp;</button>
                         </div>
                     </form>
                 </div>

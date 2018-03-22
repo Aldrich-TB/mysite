@@ -25,7 +25,7 @@ def suite():
 
 
 if __name__ == '__main__':
-    filePath ='E:\\mysite\\polls\\logs\\report1.html'
+    filePath ='E:\\mysite\\polls\\report\\test1.html'
     fp = file(filePath,'wb')
     runner = HTMLTestRunnerCN.HTMLTestRunner(
         stream=fp,

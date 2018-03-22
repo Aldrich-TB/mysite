@@ -14,6 +14,7 @@ class File(models.Model):
     status = models.IntegerField()
     start_time = models.DateTimeField(auto_now=True)
     end_time = models.DateTimeField(blank=True, null=True)
+    log = models.CharField(max_length=50)
 
 
 class Contact(models.Model):
@@ -42,25 +43,14 @@ class Sysinfo(models.Model):
 
 
 class attack_log(models.Model):
-    attacktime = models.DateTimeField(blank=True, null=True)
+    attacktime = models.CharField(max_length=50)
     attack_ip = models.CharField(max_length=50)
     attack_way = models.CharField(max_length=30)
-    log = models.FileField(upload_to='./logs/')
+    log = models.CharField(max_length=50)
 
-# class Rule(models.Model):
-#     rule_id = models.IntegerField()
-#     rule_name = models.CharField(max_length=128)
-#     run_type = models.IntegerField(1)
-#     risk = models.CharField(max_length=4)
-#     priority = models.IntegerField(1)
-#     filename = models.CharField(max_length=128)
-#     category_id = models.IntegerField()
-#     description = models.TextField(blank=True)
-#     solution = models.TextField(blank=True)
-#
-# class Result(models.Model):
-#     taskname = models.CharField()
-#     rule_id = models.IntegerField()
-#     risk = models.IntegerField(1)
-#     url = models.URLField()
-#     detail = models.TextField(blank=True)
+
+class Result(models.Model):
+    taskname = models.CharField(max_length=50)
+    url = models.CharField(max_length=50)
+    status = models.CharField(max_length=50)
+    detail = models.TextField(blank=True)

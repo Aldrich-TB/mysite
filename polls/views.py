@@ -17,25 +17,6 @@ def homepage2(request):
     return render_to_response('homepage2.html', context_instance=RequestContext(request))
 
 
-def Sign_up(request):
-    if request.method == 'POST':
-        uf = UserForm(request.POST)
-        if uf.is_valid():
-            # 获得表单数据
-            username = uf.cleaned_data['username']
-            password = uf.cleaned_data['password']
-            # 验证用户是否存在
-            check = User.objects.filter(username=username)
-            if check:
-                return HttpResponse('The user has already existed!!')
-            elif len(check) == 0:
-                User.objects.create(username=username, password=password)
-                return HttpResponse('regist success!!')
-    else:
-        uf = UserForm()
-    return render_to_response('user/sign_up.html', {'uf': uf}, context_instance=RequestContext(request))
-
-
 def login(request):
     if request.method == 'POST':
         ##获取表单信息
@@ -67,7 +48,8 @@ def charts(request):
     username = request.COOKIES.get('username')
     user = User.objects.filter(username=username)
     if user:
-        return render_to_response('charts.html', {'username': username}, context_instance=RequestContext(request))
+        logs = attack_log.objects.order_by('id')
+        return render_to_response('charts.html', {'username': username,'logs':logs}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')
 
@@ -102,6 +84,7 @@ def tasks(request):
                     files.status = 3
                     files.start_time = starttime
                     files.end_time = endtime
+                    files.log = '/logs/testreport.html'
                     files.save()
 
                     # 上传文件保存
@@ -195,3 +178,29 @@ def system_scan(request):
 
     sysinfo_get()
     return HttpResponseRedirect('/index/hardware')
+
+def report(request):
+    return render_to_response('logs/report.html')
+
+def testreport(request):
+    return render_to_response('logs/testreport.html')
+
+
+def Sign_up(request):
+    if request.method == 'POST':
+        uf = UserForm(request.POST)
+        if uf.is_valid():
+            # 获得表单数据
+            username = uf.cleaned_data['username']
+            password = uf.cleaned_data['password']
+            # 验证用户是否存在
+            check = User.objects.filter(username=username)
+            if check:
+                return HttpResponse('The user has already existed!!')
+            elif len(check) == 0:
+                User.objects.create(username=username, password=password)
+                return HttpResponse('regist success!!')
+    else:
+        uf = UserForm()
+    return render_to_response('user/sign_up.html', {'uf': uf}, context_instance=RequestContext(request))
+

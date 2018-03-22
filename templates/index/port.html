@@ -4,7 +4,7 @@
     {% include 'tools/header.html' %}
     <link href="{{ STATIC_URL }}css/dashboard.css" rel="stylesheet">
 </head>
-<body>
+<body background="{{ STATIC_URL }}img/background2.jpg">
 {% include 'tools/nav.html' %}
 <div class="container-fluid">
     <div class="row">
@@ -22,9 +22,9 @@
                 <li><a href="{% url 'hardware' %}">&nbsp;&nbsp;&nbsp;&nbsp;本机硬件检测</a></li>
             </ul>
         </div>
-        <div class="col-sm-8 col-md-offset-2 main" style="float: right">
+        <div class="col-sm-9 col-md-offset-2 main" style="float: right">
             <div class="row">
-                <div class="col-sm-9" style="margin: 0 auto;">
+                <div class="col-sm-8" style="margin: 0 auto;">
                     <div class="content" id="main_body">
                         <div class="panel panel-default main_panel">
                             <div class="panel-heading">
@@ -38,10 +38,10 @@
                                         <span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;重新扫描
                                     </button>
                                     <br/>
-                                    <table class="table table-hover">
+                                    <table class="table table-hover text"  style="text-align:center;">
                                         <thead>
                                         <tr>
-                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Port</td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;Port</td>
                                             <td>State</td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;Service</td>
                                             <td>Product</td>
@@ -51,7 +51,7 @@
                                         <tbody>
                                         {% for port in portlist %}
                                             <tr class="task_record">
-                                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ port.port }}</td>
+                                                <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ port.port }}</td>
                                                 <td>{{ port.state }}</td>
                                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ port.service }}</td>
                                                 <td>{{ port.product }}</td>

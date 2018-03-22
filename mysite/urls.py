@@ -36,5 +36,7 @@ urlpatterns = [
     url(r'^charts', views.charts, name='charts'),
     url(r'^tasks', views.tasks, name='tasks'),
 
+    url(r'^logs/report.html',views.report),
+    url(r'^logs/testreport.html',views.testreport),
     url(r'^regist', views.Sign_up, name='Sign_up'),
 ]

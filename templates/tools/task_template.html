@@ -47,13 +47,13 @@
                         <li class="restart_task"><a href="#">重新扫描</a></li>
                     {% endifequal %}
                     {% ifequal task.status 3 %}
-                        <li class="restart_task"><a href="#">重新扫描</a></li>
+                        <li class="restart_task"><a href="#" onclick="javascript:window.location.href=window.location.href;window.location.reload;">重新扫描</a></li>
                     {% endifequal %}
                     {% ifequal task.status 0 %}
                         <li class="start_task"><a href="#">扫描</a></li>
                     {% endifequal %}
                     <li class="stop_task"><a href="#">暂停</a></li>
-                    <li class="detail_task"><a href="#">详细</a></li>
+                    <li class="detail_task"><a  href="{{ task.log }}">详细</a></li>
                     <li class="delete_task"><a href="#">删除</a></li>
                 </ul>
             </div>

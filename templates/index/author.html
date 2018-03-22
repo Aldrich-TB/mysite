@@ -4,7 +4,7 @@
     {% include 'tools/header.html' %}
     <link href="{{ STATIC_URL }}css/dashboard.css" rel="stylesheet">
 </head>
-<body>
+<body background="{{ STATIC_URL }}img/background2.jpg">
 {% include 'tools/nav.html' %}
 <div class="container-fluid">
     <div class="row">
@@ -22,9 +22,9 @@
                 <li><a href="{% url 'hardware' %}">&nbsp;&nbsp;&nbsp;&nbsp;本机硬件检测</a></li>
             </ul>
         </div>
-        <div class="col-sm-8 col-md-offset-2 main" style="float: right">
+        <div class="col-sm-9 col-md-offset-2 main" style="float: right">
             <div class="row">
-                <div class="col-sm-8" style="margin: 0 auto">
+                <div class="col-sm-7" style="margin: 0 auto">
                     <div>
                         <h1>开发人员</h1>
                         <br/>
