@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ STATIC_URL }}img/favicon.ico">
+    <title>My Site</title>
+
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/cover.css" rel="stylesheet">
+</head>
+<body background="{{ STATIC_URL }}img/background.jpg">
+
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="masthead clearfix">
+                <div class="inner">
+                    <nav>
+                        <img style="margin-top:-10px;margin-left: -70px;float: left" src="{{ STATIC_URL }}img/logo.png">
+                        <br/>
+                        <ul class="nav masthead-nav">
+                            <li><a href="{% url 'homepage' %}">Home</a></li>
+                            <li class="active"><a href="{% url 'homepage2' %}">About</a></li>
+                            <li><a href="https://github.com/Aldrich-TB">GitHub</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="inner cover">
+                <h1 class="cover-heading">欢迎使用 Intrusion Detection and Forensics system</h1>
+                <br/>
+                <p class="lead">Intrusion Detection and Forensics
+                    system（web入侵检测与取证系统）是一套面向web应用程序的安全检测产品。这套系统基于Python-Django框架开发，web前端使用Bootstrap3布局。系统具有易于使用，环境依赖性低，可以快速迁移到各类操作系统环境下的特点。</p>
+                <p class="lead">该系统从监督学习的角度开发了一套防御系统，可以通过实验得到有效的识别。</p>
+                <br/>
+                <P class="lead">Intrusion Detection and Forensics system（web入侵检测与取证系统） is a set of security detection
+                    products for web applications.
+                    This system is developed based on the Python-Django framework, and the web front end uses the
+                    Bootstrap3 layout.
+                    The system has the characteristics of easy to use, low environmental dependence, and can be quickly
+                    migrated to various operating system environments.</P>
+                <p class="lead">This system has developed a set of defense systems from the perspective of supervised
+                    learning, which can be effectively identified by experiments.</p>
+            </div>
+            <div class="mastfoot">
+                <div class="inner">
+                    <p align="center">By <a href="#">Aldrich</a> &copy; <a href='#'>TB</a> 2017 - 2018</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

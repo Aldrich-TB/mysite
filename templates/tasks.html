@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    {% include 'tools/header.html' %}
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <a class="navbar-brand">&nbsp;&nbsp;&nbsp;&nbsp;Intrusion Detection and Forensics System</a>
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'index' %}">主机情况</a></li>
+                <li><a href="{% url 'charts' %}">动态监测</a></li>
+                <li class="active"><a href="{% url 'tasks' %}">静态扫描</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right rightmargin">
+                <li class="dropdown">
+                    <a class="dropdown-toggle">
+                        <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{ username }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Sign_out' %}"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Log out</a>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<img style="margin-top:-10px;" src="{{ STATIC_URL }}img/logo.png">
+<div class="content" id="main_body">
+    <div class="container">
+        <div class="panel panel-default main_panel">
+            <div class="panel-heading">
+                <h1 class="panel-title "><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;日志检测任务管理
+                </h1>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-primary btn-sm" id="new_task" data-toggle="modal" data-target="#create_task">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;新建
+                    </button>
+                    {% include 'tools/task.html' %}
+                    <button type="button" class="btn btn-primary btn-sm" id="refresh_task"
+                            onclick="javascript:window.location.href=window.location.href;window.location.reload;">
+                        <span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;刷新
+                    </button>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <td>选择</td>
+                            <td>序号</td>
+                            <td>任务名</td>
+                            <td>文件名</td>
+                            <td>状态</td>
+                            <td>开始时间</td>
+                            <td>结束时间</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <form action="" method="post" name="del_task">
+                            {% include 'tools/task_template.html' %}
+                            <button type="submit" class="btn btn-primary btn-sm" id="del_task" name="del_task">
+                                <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;删除
+                            </button>
+                            <br/>
+                        </form>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end container-->
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#create_task').modal({
+            show: false,
+            keyboard: true
+        })
+    });
+</script>
+
+{% include 'tools/footer.html' %}
+</body>
+</html>

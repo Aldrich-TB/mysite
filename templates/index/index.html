@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {% include 'tools/header.html' %}
+    <link href="{{ STATIC_URL }}css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+{% include 'tools/nav.html' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <img style="margin-left: -40px;max-width: 500px" src="{{ STATIC_URL }}img/logo.png">
+            <br/><br/><br/><br/>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="{% url 'index' %}">&nbsp;&nbsp;&nbsp;&nbsp;使用说明</a></li>
+                <li><a href="{% url 'info' 1 %}">&nbsp;&nbsp;&nbsp;&nbsp;部署说明</a></li>
+                <li><a href="{% url 'info' 2 %}">&nbsp;&nbsp;&nbsp;&nbsp;问题反馈</a></li>
+                <li><a href="{% url 'info' 3 %}">&nbsp;&nbsp;&nbsp;&nbsp;开发人员</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="{% url 'port' %}">&nbsp;&nbsp;&nbsp;&nbsp;本机端口检测</a></li>
+                <li><a href="{% url 'hardware' %}">&nbsp;&nbsp;&nbsp;&nbsp;本机硬件检测</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-8 col-md-offset-2 main" style="float: right">
+            <div class="row">
+                <div class="col-sm-9" style="margin: 0 auto">
+                    <div>
+                        <h1>欢迎使用</h1>
+                        <br/><br/><br/>
+                        <ol>
+                            <h3>
+                                <li>Intrusion Detection and Forensics
+                                    system（web入侵检测与取证系统）是一套面向web应用程序的安全检测产品。这套系统基于Python-Django框架开发，web前端使用Bootstrap3布局。系统具有易于使用，环境依赖性低，可以快速迁移到各类操作系统环境下的特点。
+                                </li>
+                            </h3>
+                            <br/>
+                            <h3>
+                                <li>针对Web应用安全进行检测，目前已经包含SQL注入攻击检测，同时具有攻击检测模块化，易于扩展检测类型。</li>
+                            </h3>
+                            <br/>
+                            <h3>
+                                <li>对没有丰富命令行经验的Web应用站点管理员的操作难度低，更为直观明了。</li>
+                            </h3>
+                        </ol>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'tools/footer.html' %}
+</body>
+</html>

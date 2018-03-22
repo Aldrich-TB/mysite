@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {% include 'tools/chart.html' %}
+    <link href="{{ STATIC_URL }}css/chart.css" rel="stylesheet">
+    {% include 'tools/header.html' %}
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <a class="navbar-brand">&nbsp;&nbsp;&nbsp;&nbsp;Intrusion Detection and Forensics System</a>
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'index' %}">主机情况</a></li>
+                <li class="active"><a href="{% url 'charts' %}">动态监测</a></li>
+                <li><a href="{% url 'tasks' %}">静态扫描</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right rightmargin">
+                <li class="dropdown">
+                    <a class="dropdown-toggle">
+                        <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{ username }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Sign_out' %}"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Log out</a>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<img style="margin-top:-10px;" src="{{ STATIC_URL }}img/logo.png">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div id="CPUcon" style="height:330px;margin:0 auto;"></div>
+        </div>
+        <br/>
+        <div class="col-lg-6">
+            <div id="container" style="height: 330px;margin: 0 auto"></div>
+        </div>
+    </div>
+    <br/>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div id="MEMcon" style="height:330px;margin:0 auto;"></div>
+        </div>
+        <br/>
+        <div class="col-lg-5">
+            <div class="row" style="height: 330px;margin: 0 auto">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-list-alt"></span><b>攻击信息</b>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <ul class="demo">
+                                    <li class="news-item">2018Feb15 - 16:11:07&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                    <li class="news-item">2018Feb15 - 16:11:08&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                    <li class="news-item">2018Feb15 - 16:12:31&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                    <li class="news-item">2018Feb15 - 16:12:33&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                    <li class="news-item">2018Feb15 - 18:21:11&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                    <li class="news-item">2018Feb15 - 18:21:18&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                    <li class="news-item">2018Feb26 - 21:16:55&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                    <li class="news-item">2018Feb26 - 21:17:07&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                    <li class="news-item">2018Feb15 - 16:11:07&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                    <li class="news-item">2018Feb15 - 16:11:08&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                    <li class="news-item">2018Feb15 - 16:12:31&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                    <li class="news-item">2018Feb15 - 16:12:33&nbsp;&nbsp;&nbsp;&nbsp;攻击IP：<a href="#">127.0.0.1</a>&nbsp;&nbsp;&nbsp;&nbsp;攻击方式：SQL注入
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $(".demo").bootstrapNews({
+            newsPerPage: 7,
+            autoplay: true,
+            pauseOnHover: true,
+            navigation: false,
+            direction: 'up',
+            newsTickerInterval: 2500,
+            onToDo: function () {
+                //console.log(this);
+            }
+        });
+    });
+</script>
+<script src="{{ STATIC_URL }}js/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/chart.js" type="text/javascript"></script>
+
+{% include 'tools/footer.html' %}
+</body>
+</html>

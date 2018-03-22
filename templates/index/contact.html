@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {% include 'tools/header.html' %}
+    <link href="{{ STATIC_URL }}css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+{% include 'tools/nav.html' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <img style="margin-left: -40px;max-width: 500px" src="{{ STATIC_URL }}img/logo.png">
+            <br/><br/><br/><br/>
+            <ul class="nav nav-sidebar">
+                <li><a href="{% url 'index' %}">&nbsp;&nbsp;&nbsp;&nbsp;使用说明</a></li>
+                <li><a href="{% url 'info' 1 %}">&nbsp;&nbsp;&nbsp;&nbsp;部署说明</a></li>
+                <li class="active"><a href="{% url 'info' 2 %}">&nbsp;&nbsp;&nbsp;&nbsp;问题反馈</a></li>
+                <li><a href="{% url 'info' 3 %}">&nbsp;&nbsp;&nbsp;&nbsp;开发人员</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="{% url 'port' %}">&nbsp;&nbsp;&nbsp;&nbsp;本机端口检测</a></li>
+                <li><a href="{% url 'hardware' %}">&nbsp;&nbsp;&nbsp;&nbsp;本机硬件检测</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-8 col-md-offset-2 main" style="float: right">
+            <div class="row">
+                <div class="col-sm-8" style="margin: 0 auto">
+                    <h1>告诉我们你的疑惑</h1>
+                    <br/>
+                    <h4>我们将回答对你来说很重要的问题，所以不要害羞，给我们写信吧。我们将尽我们所能以最快的速度来回答问题。</h4>
+                    <br/>
+                    <form accept-charset="UTF-8" method="post">
+
+                        <div class="form-group">
+                            <label for="email">电子邮件</label>
+                            <input name="email" id="email" type="email" class="form-control"
+                                   placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">标题</label>
+                            <input name="name" id="name" type="text" class="form-control" placeholder="你的想法令人震惊!"
+                                   value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">信息</label>
+                            <textarea name="message" id="message" class="form-control" rows="7"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button onclick="result()" type="submit" class="btn btn-primary">发送信息</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function result() {
+        alert("提交成功！")
+    }
+</script>
+{% include 'tools/footer.html' %}
+</body>
+</html>

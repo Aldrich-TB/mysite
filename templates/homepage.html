@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ STATIC_URL }}img/favicon.ico">
+    <title>My Site</title>
+
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/cover.css" rel="stylesheet">
+</head>
+<body background="{{ STATIC_URL }}img/background.jpg">
+
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="masthead clearfix">
+                <div class="inner">
+                    <nav>
+                        <img style="margin-top:-10px;margin-left: -70px;float: left" src="{{ STATIC_URL }}img/logo.png">
+                        <br/>
+                        <ul class="nav masthead-nav">
+                            <li class="active"><a href="{% url 'homepage' %}">Home</a></li>
+                            <li><a href="{% url 'homepage2' %}">About</a></li>
+                            <li><a href="https://github.com/Aldrich-TB">GitHub</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="inner cover">
+                <h1>基于机器学习的web入侵检测与取证系统设计</h1>
+                <h1 class="cover-heading">Design of Web Intrusion Detection and Forensics System Based on machine
+                    learning</h1>
+                <br/>
+                <p class="lead">
+                    <a href="{% url 'index' %}" class="btn btn-lg btn-default">Get Started</a>
+                </p>
+            </div>
+            <div class="mastfoot">
+                <div class="inner">
+                    <p align="center">By <a href="#">Aldrich</a> &copy; <a href='#'>TB</a> 2017 - 2018</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
