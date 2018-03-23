@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
 
 
@@ -35,7 +37,7 @@ class Sysinfo(models.Model):
     ip = models.CharField(max_length=50)
     system = models.CharField(max_length=50)
     plantform = models.CharField(max_length=50)
-    version = models.CharField(max_length=50)
+    version = models.CharField(max_length=300)
     bit = models.CharField(max_length=30)
     machine = models.CharField(max_length=50)
     PCname = models.CharField(max_length=30)

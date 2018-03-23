@@ -11,6 +11,16 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='attack_log',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('attacktime', models.CharField(max_length=50)),
+                ('attack_ip', models.CharField(max_length=50)),
+                ('attack_way', models.CharField(max_length=30)),
+                ('log', models.CharField(max_length=50)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Contact',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -29,6 +39,7 @@ class Migration(migrations.Migration):
                 ('status', models.IntegerField()),
                 ('start_time', models.DateTimeField(auto_now=True)),
                 ('end_time', models.DateTimeField(null=True, blank=True)),
+                ('log', models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
@@ -43,6 +54,16 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='Result',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('taskname', models.CharField(max_length=50)),
+                ('url', models.CharField(max_length=50)),
+                ('status', models.CharField(max_length=50)),
+                ('detail', models.TextField(blank=True)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Sysinfo',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -50,7 +71,7 @@ class Migration(migrations.Migration):
                 ('system', models.CharField(max_length=50)),
                 ('plantform', models.CharField(max_length=50)),
                 ('version', models.CharField(max_length=50)),
-                ('bit', models.CharField(max_length=10)),
+                ('bit', models.CharField(max_length=30)),
                 ('machine', models.CharField(max_length=50)),
                 ('PCname', models.CharField(max_length=30)),
                 ('cpu', models.CharField(max_length=50)),

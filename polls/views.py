@@ -154,11 +154,13 @@ def port(request):
 
 
 def portscan(request):
+    print('1')
     # 清空数据库
     Port.objects.all().delete()
-
+    print('2')
     port_get()
-    return HttpResponseRedirect('/index/port')
+    print('done')
+    return HttpResponseRedirect('/scan/port')
 
 
 def hardware(request):
@@ -177,7 +179,7 @@ def system_scan(request):
     Sysinfo.objects.all().delete()
 
     sysinfo_get()
-    return HttpResponseRedirect('/index/hardware')
+    return HttpResponseRedirect('/scan/hardware')
 
 def report(request):
     return render_to_response('logs/report.html')

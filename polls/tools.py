@@ -6,6 +6,7 @@ import platform
 import socket
 import nmap
 
+
 risk_port = [15, 21, 22, 23, 25, 53, 80, 135, 137, 138, 139, 161, 1099, 1433, 1521, 3306, 3389, 8080]
 
 
@@ -30,6 +31,8 @@ def sysinfo_get():
     sys.bit = platform.architecture()
     sys.machine = platform.machine()
     sys.PCname = platform.node()
+    if sys.PCname == 'bogon':
+        sys.PCname = 'TBdeMacBook-Pro'
     sys.cpu = platform.processor()
     sys.save()
 
@@ -39,6 +42,7 @@ def port_get():
     nm = nmap.PortScanner()
     nm.scan(host, '0-65535')
 
+    print(nm.csv())
     # 提取扫描信息 分类
     for proto in nm[host].all_protocols():
         lport = nm[host][proto].keys()
@@ -62,3 +66,4 @@ def port_get():
             portlist.product = product
             portlist.risk = risk
             portlist.save()
+
