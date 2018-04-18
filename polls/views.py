@@ -7,9 +7,13 @@ from .forms import *
 import datetime
 from tools import *
 
+# from macscan.core import test
+# import sys
+# sys.path.append("..")
 
 # Create your views here.
 def homepage(request):
+    # test(1)
     return render_to_response('homepage.html', context_instance=RequestContext(request))
 
 
@@ -19,12 +23,12 @@ def homepage2(request):
 
 def login(request):
     if request.method == 'POST':
-        ##获取表单信息
+        # 获取表单信息
         uf = UserForm(request.POST)
         if uf.is_valid():
             username = uf.cleaned_data['username']
             password = uf.cleaned_data['password']
-            ##判断用户密码是否匹配
+            # 判断用户密码是否匹配
             user = User.objects.filter(username=username, password=password)
             if user:
                 response = HttpResponseRedirect('/index')

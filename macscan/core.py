@@ -118,3 +118,7 @@ print scores.mean()
 #             print norm_list[(i-len(pl_list))]
 #             print requires[(i-len(pl_list))]
 #         print "\n"
+
+
+def test(a):
+    print "test!" + a
